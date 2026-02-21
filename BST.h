@@ -1,8 +1,11 @@
 #pragma once
+
+#include <stdbool.h>
+
 typedef struct BST BST;
 
 BST* bstInit(void);
-void bstInsert(BST*, int);
+int bstInsert(BST*, int);
 bool bstContains(BST*, int);
 void bstFree(BST*);
 

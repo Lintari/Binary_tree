@@ -5,7 +5,7 @@
 
 typedef struct Node{
     struct Node* leftChild;
-    Node* rightChild; 
+    struct Node* rightChild; 
     int value;
 }Node; 
 
@@ -32,6 +32,7 @@ int insertRecursion(Node* vertex, int n){
             leaf -> leftChild = NULL;
             leaf -> rightChild = NULL;
             leaf -> value = n;
+            vertex -> leftChild = leaf;
             return 0;
         }
         return insertRecursion(vertex -> leftChild, n); 
@@ -44,6 +45,7 @@ int insertRecursion(Node* vertex, int n){
             leaf -> leftChild = NULL;
             leaf -> rightChild = NULL;
             leaf -> value = n;
+            vertex -> rightChild = leaf;
             return 0;
         }
         return insertRecursion(vertex -> rightChild, n);
@@ -58,7 +60,7 @@ int bstInsert(BST* tree, int value){
        vert -> leftChild = NULL;
        vert -> rightChild = NULL;
        tree -> root = vert;
-       return;
+       return 0;
     }
     int error = insertRecursion(tree -> root, value);
     if (error != 0)
@@ -70,35 +72,35 @@ int bstInsert(BST* tree, int value){
 bool containsRecursion (Node* vertex, int n){
     if (vertex -> value < n) {
         if (vertex -> leftChild == NULL) {
-            return False;
+            return false;
         }
         return containsRecursion(vertex -> leftChild, n); 
     } 
     else if (vertex -> value > n) {
         if (vertex -> rightChild == NULL) {
-            return False;
+            return false;
         }
         return containsRecursion(vertex -> rightChild, n);
     }
-    return True;
+    return true;
 }
 
 bool bstContains(BST* tree, int value){
     if (tree -> root == NULL)
-        return False;
+        return false;
     return containsRecursion(tree -> root, value);
 }
 
 void bstFreeRecursion (Node* vertex){
     if (vertex -> leftChild != NULL)
-	bstFreeRecursion( vertex -> leftChild);
-    
+        bstFreeRecursion( vertex -> leftChild);
     if (vertex -> rightChild != NULL)
-	bstFreeRecursion( vertex -> rightChild); 
+        bstFreeRecursion( vertex -> rightChild); 
     free(vertex);
 }
 
-void bstFree(BST* tree){ 
-    bstFreeRecursion( tree->root);
+void bstFree(BST* tree){
+    if (tree -> root != NULL)
+        bstFreeRecursion(tree->root);
     free(tree);
 }
