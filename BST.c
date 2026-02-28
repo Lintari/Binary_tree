@@ -21,7 +21,7 @@ BST* bstInit(void)
     return tree;
 }
 
-int insertRecursion(Node* vertex, int n)
+int insertRecursion(Node* vertex, int n) // NOLINT(misc-no-recursion)
 {
     if (vertex->value < n) {
         if (vertex->leftChild == NULL) {
@@ -34,7 +34,7 @@ int insertRecursion(Node* vertex, int n)
             vertex->leftChild = leaf;
             return 0;
         }
-        return insertRecursion(vertex->leftChild, n);
+        return insertRecursion(vertex->leftChild, n); // NOLINT(misc-no-recursion)
     } else if (vertex->value > n) {
         if (vertex->rightChild == NULL) {
             Node* leaf = malloc(sizeof(Node));
@@ -46,7 +46,7 @@ int insertRecursion(Node* vertex, int n)
             vertex->rightChild = leaf;
             return 0;
         }
-        return insertRecursion(vertex->rightChild, n);
+        return insertRecursion(vertex->rightChild, n); // NOLINT(misc-no-recursion)
     }
     return 0;
 }
@@ -68,18 +68,18 @@ int bstInsert(BST* tree, int value)
     return 0;
 }
 
-bool containsRecursion(Node* vertex, int n)
+bool containsRecursion(Node* vertex, int n) // NOLINT(misc-no-recursion)
 {
     if (vertex->value < n) {
         if (vertex->leftChild == NULL) {
             return false;
         }
-        return containsRecursion(vertex->leftChild, n);
+        return containsRecursion(vertex->leftChild, n); // NOLINT(misc-no-recursion)
     } else if (vertex->value > n) {
         if (vertex->rightChild == NULL) {
             return false;
         }
-        return containsRecursion(vertex->rightChild, n);
+        return containsRecursion(vertex->rightChild, n); // NOLINT(misc-no-recursion)
     }
     return true;
 }
@@ -91,12 +91,12 @@ bool bstContains(BST* tree, int value)
     return containsRecursion(tree->root, value);
 }
 
-void bstFreeRecursion(Node* vertex)
+void bstFreeRecursion(Node* vertex) // NOLINT(misc-no-recursion)
 {
     if (vertex->leftChild != NULL)
-        bstFreeRecursion(vertex->leftChild);
+        bstFreeRecursion(vertex->leftChild); // NOLINT(misc-no-recursion)
     if (vertex->rightChild != NULL)
-        bstFreeRecursion(vertex->rightChild);
+        bstFreeRecursion(vertex->rightChild); // NOLINT(misc-no-recursion)
     free(vertex);
 }
 
