@@ -11,7 +11,7 @@ void bstFree(BST*);
 
 void bstInorder(BST*);
 void bstPreorder(BST*);
-void bstPostoreder(BST*);
+void bstPostorder(BST*);
 
 int bstHeight(BST*);
 int bstSize(BST*);

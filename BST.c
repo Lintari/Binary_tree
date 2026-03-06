@@ -23,7 +23,7 @@ BST* bstInit(void)
 
 int insertRecursion(Node* vertex, int n) // NOLINT(misc-no-recursion)
 {
-    if (vertex->value < n) {
+    if (vertex->value > n) {
         if (vertex->leftChild == NULL) {
             Node* leaf = malloc(sizeof(Node));
             if (leaf == NULL)
@@ -35,7 +35,7 @@ int insertRecursion(Node* vertex, int n) // NOLINT(misc-no-recursion)
             return 0;
         }
         return insertRecursion(vertex->leftChild, n); // NOLINT(misc-no-recursion)
-    } else if (vertex->value > n) {
+    } else if (vertex->value < n) {
         if (vertex->rightChild == NULL) {
             Node* leaf = malloc(sizeof(Node));
             if (leaf == NULL)
@@ -55,6 +55,8 @@ int bstInsert(BST* tree, int value)
 {
     if (tree->root == NULL) {
         Node* vert = malloc(sizeof(Node));
+        if (vert == NULL)
+            return -1;
         vert->value = value;
         vert->leftChild = NULL;
         vert->rightChild = NULL;
@@ -105,4 +107,49 @@ void bstFree(BST* tree)
     if (tree->root != NULL)
         bstFreeRecursion(tree->root);
     free(tree);
+}
+
+void preorderRecursion(Node* vertex) // NOLINT(misc-no-recursion)
+{
+    printf("%d ", vertex->value);
+    if (vertex->leftChild != NULL)
+        preorderRecursion(vertex->leftChild); // NOLINT(misc-no-recursion)
+    if (vertex->rightChild != NULL)
+        preorderRecursion(vertex->rightChild); // NOLINT(misc-no-recursion)
+}
+
+void bstPreorder(BST* tree)
+{
+    preorderRecursion(tree->root);
+    printf("\n");
+}
+
+void inorderRecursion(Node* vertex) // NOLINT(misc-no-recursion)
+{
+    if (vertex->leftChild != NULL)
+        inorderRecursion(vertex->leftChild); // NOLINT(misc-no-recursion)
+    printf("%d ", vertex->value);
+    if (vertex->rightChild != NULL)
+        inorderRecursion(vertex->rightChild); // NOLINT(misc-no-recursion)
+}
+
+void bstInorder(BST* tree)
+{
+    inorderRecursion(tree->root);
+    printf("\n");
+}
+
+void postorderRecursion(Node* vertex) // NOLINT(misc-no-recursion)
+{
+    if (vertex->leftChild != NULL)
+        postorderRecursion(vertex->leftChild); // NOLINT(misc-no-recursion)
+    if (vertex->rightChild != NULL)
+        postorderRecursion(vertex->rightChild); // NOLINT(misc-no-recursion)
+    printf("%d ", vertex->value);
+}
+
+void bstPostorder(BST* tree)
+{
+    postorderRecursion(tree->root);
+    printf("\n");
 }

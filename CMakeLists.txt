@@ -8,5 +8,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 enable_testing()
 
-add_executable(bst BST.c BST.h)
+add_library(bst BST.c BST.h)
+add_executable(funcTesting main.c)
 
+target_link_libraries(funcTesting PRIVATE bst)
