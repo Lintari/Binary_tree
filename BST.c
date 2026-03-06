@@ -131,7 +131,6 @@ void inorderRecursion(Node* vertex) // NOLINT(misc-no-recursion)
     printf("%d ", vertex->value);
     if (vertex->rightChild != NULL)
         inorderRecursion(vertex->rightChild); // NOLINT(misc-no-recursion)
-
 }
 
 void bstInorder(BST* tree)
@@ -139,7 +138,6 @@ void bstInorder(BST* tree)
     inorderRecursion(tree->root);
     printf("\n");
 }
-
 
 void postorderRecursion(Node* vertex) // NOLINT(misc-no-recursion)
 {
@@ -155,4 +153,3 @@ void bstPostorder(BST* tree)
     postorderRecursion(tree->root);
     printf("\n");
 }
-

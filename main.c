@@ -1,6 +1,6 @@
 #include "BST.h"
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 int main(void)
 {
@@ -16,7 +16,7 @@ int main(void)
     bstFree(tree1);
 
     BST* tree2 = bstInit();
-    int a[5] = {3, 2, 4, 1, 5};
+    int a[5] = { 3, 2, 4, 1, 5 };
     for (int i = 0; i < 5; ++i)
         bstInsert(tree2, a[i]);
     bstInorder(tree2);
@@ -25,7 +25,7 @@ int main(void)
     bstFree(tree2);
 
     BST* tree3 = bstInit();
-    int b[7] = {50, 30, 70, 20, 40, 60, 80};
+    int b[7] = { 50, 30, 70, 20, 40, 60, 80 };
     for (int i = 0; i < 7; ++i)
         bstInsert(tree3, b[i]);
     bstInorder(tree3);
